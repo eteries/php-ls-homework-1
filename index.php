@@ -223,16 +223,15 @@ for ($i  = 1; $i <= 10; $i++) {
 
     for ($j = 1; $j <= 10; $j++) {
         echo '<td>';
+
         $res = $i * $j;
-        switch ($res) {
-            case ($i % 2 == 0 && $j % 2 == 0):
-                echo "($res)";
-                break;
-            case ($i % 2 != 0 && $j % 2 != 0):
-                echo "[$res]";
-                break;
-            default:
-                echo $res;
+
+        if ($i % 2 == 0 && $j % 2 == 0) {
+            echo "($res)";
+        } elseif ($i % 2 != 0 && $j % 2 != 0) {
+            echo "[$res]";
+        } else {
+            echo $res;
         }
     }
 
@@ -261,13 +260,15 @@ $arr = explode(' ', $str);
 print_r($arr);
 echo '<br>';
 
-$i = 0;
+$i = count($arr);
 $res = '';
-$arr_length = count($arr);
 
-while ($i < $arr_length) {
-    $res .= $arr[$i] . '~~';
-    $i++;
+while ($i > 0) {
+    $i--;
+    $res .= $arr[$i];
+    if ($i != 0) {
+        $res .= '~~';
+    }
 }
 
 echo $res;
